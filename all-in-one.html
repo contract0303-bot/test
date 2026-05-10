@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>열파 예측과 데이터 동화 | 연구 프로젝트</title>
+    <title>Understanding Heatwave Prediction through Data Assimilation</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
 /* ======================
@@ -47,7 +47,7 @@ html {
 }
 
 body {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: var(--text);
     background-color: #fff;
     opacity: 0;
@@ -73,6 +73,7 @@ body {
 .navbar-brand {
     font-size: 1.5rem;
     letter-spacing: 0.5px;
+    font-weight: 700;
     transition: all 0.3s ease;
 }
 
@@ -122,15 +123,9 @@ body {
 }
 
 @keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .hero::before {
@@ -196,19 +191,44 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    position: relative;
 }
 
 /* ======================
-   INTRODUCTION
+   CARDS
    ====================== */
 
-.intro-box {
-    padding: 2rem;
+.intro-box, .bg-card, .method-card, .chart-card, .conclusion-box {
     background: white;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.intro-box, .conclusion-box {
+    padding: 2rem;
     border-left: 5px solid var(--primary);
+}
+
+.bg-card, .method-card {
+    padding: 2rem;
+    border-left: 4px solid var(--primary);
+}
+
+.chart-card {
+    padding: 2rem;
+}
+
+.intro-box:hover, .conclusion-box:hover {
+    box-shadow: 0 10px 35px rgba(102, 126, 234, 0.15);
+}
+
+.bg-card:hover {
+    box-shadow: 0 10px 35px rgba(102, 126, 234, 0.15);
+    transform: translateX(5px);
+}
+
+.chart-card:hover {
+    box-shadow: 0 10px 35px rgba(102, 126, 234, 0.15);
 }
 
 .highlight-box {
@@ -290,36 +310,11 @@ body {
 .goal-card p {
     color: #666;
     line-height: 1.6;
-    font-size: 1rem;
 }
 
 /* ======================
-   BACKGROUND CARDS
+   LISTS & FORMULAS
    ====================== */
-
-.bg-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    border-left: 4px solid var(--primary);
-    transition: all 0.3s ease;
-}
-
-.bg-card:hover {
-    box-shadow: 0 10px 35px rgba(102, 126, 234, 0.15);
-    transform: translateX(5px);
-}
-
-.bg-card h4 {
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-.bg-card i {
-    margin-right: 0.5rem;
-}
 
 .custom-list {
     list-style: none;
@@ -330,6 +325,7 @@ body {
     padding: 0.8rem 0;
     color: #555;
     border-bottom: 1px solid #f0f0f0;
+    line-height: 1.6;
 }
 
 .custom-list li:last-child {
@@ -376,15 +372,8 @@ body {
 }
 
 /* ======================
-   METHOD CARDS
+   TIMELINE
    ====================== */
-
-.method-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-}
 
 .timeline {
     position: relative;
@@ -492,37 +481,19 @@ body {
     color: var(--primary);
 }
 
-.negative {
-    color: #e74c3c;
-    font-weight: 600;
-}
-
-.positive {
-    color: #27ae60;
-    font-weight: 600;
-}
+.negative { color: #e74c3c; font-weight: 600; }
+.positive { color: #27ae60; font-weight: 600; }
 
 /* ======================
    CHARTS
    ====================== */
-
-.chart-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-}
-
-.chart-card:hover {
-    box-shadow: 0 10px 35px rgba(102, 126, 234, 0.15);
-}
 
 .chart-controls {
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
 
 .comp-btn {
@@ -551,7 +522,7 @@ body {
 }
 
 /* ======================
-   FINDINGS
+   FINDING CARDS
    ====================== */
 
 .finding-card {
@@ -580,7 +551,7 @@ body {
 }
 
 /* ======================
-   TEAM SECTION
+   TEAM CARDS
    ====================== */
 
 .team-card {
@@ -649,14 +620,6 @@ body {
 /* ======================
    CONCLUSION
    ====================== */
-
-.conclusion-box {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    border-left: 5px solid var(--primary);
-}
 
 .conclusion-list {
     list-style: none;
@@ -753,165 +716,36 @@ body {
    ====================== */
 
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero .lead {
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-
-    .timeline::before {
-        left: 15px;
-    }
-
-    .timeline-item {
-        padding-left: 70px;
-    }
-
-    .timeline-marker {
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
-        left: -7.5px;
-    }
-
-    .data-table th,
-    .data-table td {
-        padding: 0.8rem 0.5rem;
-        font-size: 0.85rem;
-    }
-
-    .chart-controls {
-        flex-direction: column;
-    }
-
-    .comp-btn {
-        width: 100%;
-    }
-
-    .team-card {
-        margin-top: 2rem;
-    }
+    .hero h1 { font-size: 2rem; }
+    .hero .lead { font-size: 1rem; }
+    .section-title { font-size: 1.8rem; }
+    .timeline::before { left: 15px; }
+    .timeline-item { padding-left: 70px; }
+    .timeline-marker { width: 45px; height: 45px; font-size: 1.2rem; left: -7.5px; }
+    .data-table th, .data-table td { padding: 0.8rem 0.5rem; font-size: 0.85rem; }
+    .chart-controls { flex-direction: column; }
+    .comp-btn { width: 100%; }
+    .team-card { margin-top: 2rem; }
 }
 
 @media (max-width: 576px) {
-    .hero {
-        min-height: 80vh;
-        padding: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .hero .lead {
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .intro-box,
-    .bg-card,
-    .goal-card,
-    .method-card,
-    .team-card,
-    .chart-card,
-    .conclusion-box {
-        padding: 1.5rem;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-    }
-
-    .placeholder-box {
-        min-height: 250px;
-    }
-
-    .formula-text {
-        font-size: 1.2rem;
-    }
-
-    .goal-number {
-        font-size: 2rem;
-    }
-
-    .goal-card i {
-        font-size: 2rem;
-    }
-
-    .team-avatar {
-        width: 60px;
-        height: 60px;
-        margin-top: -30px;
-        font-size: 1.5rem;
-    }
-}
-
-/* ======================
-   ANIMATIONS
-   ====================== */
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Smooth scroll for all browsers */
-@supports (scroll-behavior: smooth) {
-    html {
-        scroll-behavior: smooth;
-    }
+    .hero { min-height: 80vh; padding: 1rem; }
+    .hero h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .hero .lead { font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .intro-box, .bg-card, .goal-card, .method-card, .team-card, .chart-card, .conclusion-box { padding: 1.5rem; }
+    .section-title { font-size: 1.5rem; }
+    .placeholder-box { min-height: 250px; }
+    .formula-text { font-size: 1.2rem; }
+    .goal-number { font-size: 2rem; }
+    .goal-card i { font-size: 2rem; }
+    .team-avatar { width: 60px; height: 60px; margin-top: -30px; font-size: 1.5rem; }
 }
 
 /* Print styles */
 @media print {
-    .navbar,
-    .footer {
-        display: none;
-    }
-    
-    body {
-        color: #000;
-    }
-    
-    .btn,
-    .chart-controls {
-        display: none;
-    }
+    .navbar, .footer { display: none; }
+    body { color: #000; }
+    .btn, .chart-controls { display: none; }
 }
     </style>
 </head>
@@ -920,20 +754,20 @@ body {
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#home">
-                <i class="fas fa-thermometer-half"></i> 열파 예측 연구
+                <i class="fas fa-thermometer-half"></i> Heatwave Prediction
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#intro">소개</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#goals">연구 목표</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#background">배경</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#method">방법</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#results">결과</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">팀</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#conclusion">결론</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#intro">Introduction</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#goals">Goals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#background">Background</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#method">Method</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#results">Results</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#conclusion">Conclusion</a></li>
                 </ul>
             </div>
         </div>
@@ -943,13 +777,13 @@ body {
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="display-3 fw-bold mb-3" data-aos="fade-up">
-                열파 예측을 위한<br>데이터 동화 분석
+                Understanding Heatwave Prediction<br>through Data Assimilation
             </h1>
             <p class="lead mb-4" data-aos="fade-up" data-aos-delay="200">
-                초기 조건 민감도 · 앙상블 칼만 필터 · 관측 밀도 · 열파 예보
+                Initial Condition Sensitivity · EnKF · Observation Density · Heatwave Forecasting
             </p>
             <a href="#intro" class="btn btn-lg btn-light" data-aos="fade-up" data-aos-delay="400">
-                <i class="fas fa-arrow-down"></i> 자세히 보기
+                <i class="fas fa-arrow-down"></i> Learn More
             </a>
         </div>
     </section>
@@ -961,24 +795,24 @@ body {
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="intro-box">
                         <h2 class="section-title mb-4">
-                            <span class="highlight">연구 소개</span>
+                            <span class="highlight">Introduction & Goal</span>
                         </h2>
                         <p class="fs-5 mb-3">
-                            열파는 가장 영향력 있는 극단 기상 현상 중 하나입니다. 정확한 예측은 공공 안전, 에너지 수요, 그리고 기후 위험 관리에 중요합니다.
+                            Heatwaves are among the most impactful extreme weather events. Accurate prediction is important for public safety, energy demand, and climate risk management.
                         </p>
                         <p class="fs-5 mb-3">
-                            수치 날씨 예보는 초기 조건에 매우 민감합니다. 초기 대기 상태의 작은 오차가 예보 오차로 증폭될 수 있습니다.
+                            However, numerical weather prediction is highly sensitive to initial conditions, meaning small errors in the initial atmospheric state can grow into large forecast errors.
                         </p>
                         <div class="highlight-box">
                             <i class="fas fa-lightbulb"></i>
-                            <strong>핵심:</strong> 데이터 동화(Data Assimilation)를 통해 모델 예측을 개선할 수 있습니다.
+                            <strong>Key:</strong> Data assimilation can significantly improve model predictions.
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="placeholder-box">
                         <i class="fas fa-chart-line"></i>
-                        <p>시각화 영역</p>
+                        <p>Visualization Area</p>
                     </div>
                 </div>
             </div>
@@ -989,31 +823,31 @@ body {
     <section id="goals" class="py-5">
         <div class="container">
             <h2 class="section-title text-center mb-5" data-aos="fade-up">
-                <span class="highlight">연구 목표</span>
+                <span class="highlight">Research Goals</span>
             </h2>
             <div class="row g-4">
                 <div class="col-lg-4" data-aos="fade-up">
                     <div class="goal-card">
                         <div class="goal-number">01</div>
                         <i class="fas fa-chart-bar"></i>
-                        <h4>목표 1</h4>
-                        <p>정상 년도와 열파 년도에서 예보 오차 변화 조사</p>
+                        <h4>Goal 1</h4>
+                        <p>Investigate how forecast error changes during normal and heatwave years.</p>
                     </div>
                 </div>
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-number">02</div>
                         <i class="fas fa-map-marker"></i>
-                        <h4>목표 2</h4>
-                        <p>관측 밀도가 데이터 동화 성능에 미치는 영향 분석</p>
+                        <h4>Goal 2</h4>
+                        <p>Analyze how observation density affects DA performance.</p>
                     </div>
                 </div>
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="goal-card">
                         <div class="goal-number">03</div>
                         <i class="fas fa-filter"></i>
-                        <h4>목표 3</h4>
-                        <p>ERA5와 ASOS 데이터를 활용한 EnKF 기반 동화 적용</p>
+                        <h4>Goal 3</h4>
+                        <p>Apply EnKF-based data assimilation using ERA5 and ASOS data.</p>
                     </div>
                 </div>
             </div>
@@ -1024,31 +858,30 @@ body {
     <section id="background" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title text-center mb-5" data-aos="fade-up">
-                <span class="highlight">데이터 동화 배경</span>
+                <span class="highlight">Data Assimilation Background</span>
             </h2>
             
             <div class="row g-4">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="bg-card">
-                        <h4 class="mb-4"><i class="fas fa-brain"></i> 개념</h4>
+                        <h4 class="mb-4"><i class="fas fa-brain"></i> Data Assimilation Concept</h4>
                         <p class="fs-5 mb-3">
-                            데이터 동화는 모델의 배경장 정보와 관측을 결합하여 더 정확한 대기 상태(분석장)을 생성합니다.
+                            Data assimilation combines model background information with observations to produce a more accurate atmospheric state called the analysis.
                         </p>
                         <div class="formula-box">
-                            <p><strong>분석 = 배경 + 칼만 이득 × 혁신</strong></p>
-                            <p class="text-muted small">Analysis = Background + Kalman Gain × Innovation</p>
+                            <p><strong>analysis = background + Kalman gain × innovation</strong></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="bg-card">
-                        <h4 class="mb-4"><i class="fas fa-database"></i> 데이터 정의</h4>
+                        <h4 class="mb-4"><i class="fas fa-database"></i> Data Definition</h4>
                         <ul class="custom-list">
-                            <li><strong>배경:</strong> ERA5 모델 추정값</li>
-                            <li><strong>관측:</strong> ASOS 실측 온도</li>
-                            <li><strong>혁신:</strong> 관측 - 배경 차이</li>
-                            <li><strong>분석:</strong> DA 보정된 온도</li>
+                            <li><strong>Background:</strong> ERA5 model estimate</li>
+                            <li><strong>Observation:</strong> ASOS measured temperature</li>
+                            <li><strong>Innovation:</strong> observation − background</li>
+                            <li><strong>Analysis:</strong> DA-corrected temperature</li>
                         </ul>
                     </div>
                 </div>
@@ -1057,14 +890,14 @@ body {
             <div class="row g-4 mt-3">
                 <div class="col-12" data-aos="fade-up">
                     <div class="formula-card">
-                        <h5 class="mb-3">칼만 이득 방정식</h5>
+                        <h5 class="mb-3">Kalman Gain Equation</h5>
                         <div class="formula-text">
                             K = P<sup>b</sup>H<sup>T</sup>(HP<sup>b</sup>H<sup>T</sup> + R)<sup>-1</sup>
                         </div>
                         <p class="text-muted mt-3 small">
-                            <strong>P<sup>b</sup></strong> = 배경 오차 공분산 | 
-                            <strong>H</strong> = 관측 연산자 | 
-                            <strong>R</strong> = 관측 오차 공분산
+                            <strong>P<sup>b</sup></strong> = Background Error Covariance | 
+                            <strong>H</strong> = Observation Operator | 
+                            <strong>R</strong> = Observation Error Covariance
                         </p>
                     </div>
                 </div>
@@ -1076,66 +909,65 @@ body {
     <section id="method" class="py-5">
         <div class="container">
             <h2 class="section-title text-center mb-5" data-aos="fade-up">
-                <span class="highlight">연구 방법</span>
+                <span class="highlight">Research Method</span>
             </h2>
 
             <div class="row mb-5">
                 <div class="col-lg-6" data-aos="fade-right">
-                    <h4 class="mb-4"><i class="fas fa-database"></i> 데이터</h4>
+                    <h4 class="mb-4"><i class="fas fa-database"></i> Data</h4>
                     <div class="method-card">
                         <ul class="custom-list">
-                            <li><strong>ERA5:</strong> 2021년 7월-8월 (정상 년도)</li>
-                            <li><strong>ERA5:</strong> 2024년 7월-8월 (열파 년도)</li>
-                            <li><strong>ASOS:</strong> 실측 지표 온도</li>
+                            <li><strong>ERA5:</strong> 2m temperature data for July–August 2021 and 2024</li>
+                            <li><strong>ASOS:</strong> Surface temperature observations</li>
                         </ul>
                     </div>
                     <div class="method-card mt-4">
-                        <h5 class="mb-3">연구 영역</h5>
+                        <h5 class="mb-3">Study Regions</h5>
                         <ul class="custom-list">
-                            <li><strong>SE:</strong> 서울/경기 (관측 밀집)</li>
-                            <li><strong>GW:</strong> 강원 (관측 희소, 복잡 지형)</li>
+                            <li><strong>SE:</strong> Seoul/Gyeonggi (observation-dense region)</li>
+                            <li><strong>GW:</strong> Gangwon (observation-sparse and complex-terrain region)</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="placeholder-box">
-                        <i class="fas fa-map-korea"></i>
-                        <p>한반도 지도 영역</p>
+                        <i class="fas fa-map"></i>
+                        <p>Map Visualization Area</p>
                     </div>
                 </div>
             </div>
 
             <div class="row" data-aos="fade-up">
                 <div class="col-12">
-                    <h4 class="mb-4"><i class="fas fa-timeline"></i> 연구 진행 타임라인</h4>
+                    <h4 class="mb-4"><i class="fas fa-timeline"></i> Research Timeline</h4>
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content">
-                                <h5>1단계: 데이터 준비</h5>
-                                <p>ERA5 & ASOS 데이터 수집 및 전처리</p>
+                                <h5>Stage 1: Data Preparation</h5>
+                                <p>ERA5 & ASOS data collection and preprocessing</p>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content">
-                                <h5>2단계: EnKF 구현</h5>
-                                <p>칼만 이득 계산 및 동화 모듈 개발</p>
+                                <h5>Stage 2: EnKF Implementation</h5>
+                                <p>Kalman gain calculation and assimilation module development</p>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content">
-                                <h5>3단계: 시간 분석</h5>
-                                <p>2021 vs 2024 열파 성능 비교</p>
+                                <h5>Stage 3: Time Analysis</h5>
+                                <p>2021 vs 2024 heatwave performance comparison</p>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-marker"></div>
                             <div class="timeline-content">
-                                <h5>4단계: 공간 분석</h5>
-                                <p>관측 밀도 영향 분석 (SE vs GW)</p>
+                                <h5>Stage 4: Spatial Analysis</h5>
+                                <p>Observation density impact analysis (SE vs GW)</p>
                             </div>
                         </div>
                     </div>
@@ -1148,22 +980,22 @@ body {
     <section id="results" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title text-center mb-5" data-aos="fade-up">
-                <span class="highlight">연구 결과</span>
+                <span class="highlight">Research Results</span>
             </h2>
 
             <!-- Time Analysis -->
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12">
-                    <h4 class="mb-4"><i class="fas fa-clock"></i> 시간 분석: 2021 vs 2024</h4>
+                    <h4 class="mb-4"><i class="fas fa-clock"></i> Time Analysis: 2021 vs 2024</h4>
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>경우</th>
-                                    <th>자유 실행 RMSE</th>
-                                    <th>분석 RMSE</th>
-                                    <th>RMSE 감소</th>
-                                    <th>개선율 (%)</th>
+                                    <th>Case</th>
+                                    <th>Free Run RMSE</th>
+                                    <th>Analysis RMSE</th>
+                                    <th>RMSE Reduction</th>
+                                    <th>Improvement Rate</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1201,7 +1033,7 @@ body {
                 </div>
             </div>
 
-            <!-- Charts Row 1 -->
+            <!-- Charts Row -->
             <div class="row g-4 mb-5">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="chart-card">
@@ -1218,18 +1050,18 @@ body {
             <!-- Spatial Analysis -->
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12">
-                    <h4 class="mb-4"><i class="fas fa-map-marker"></i> 공간 분석: SE vs GW (2024)</h4>
+                    <h4 class="mb-4"><i class="fas fa-map-marker"></i> Spatial Analysis: SE vs GW OSE Experiment</h4>
                     <div class="table-responsive">
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>경우</th>
-                                    <th>배경 RMSE</th>
-                                    <th>분석 RMSE</th>
-                                    <th>RMSE 감소</th>
-                                    <th>개선율 (%)</th>
-                                    <th>평균 증분</th>
-                                    <th>평균 절대 증분</th>
+                                    <th>Case</th>
+                                    <th>Background RMSE</th>
+                                    <th>Analysis RMSE</th>
+                                    <th>RMSE Reduction</th>
+                                    <th>Improvement Rate</th>
+                                    <th>Mean Increment</th>
+                                    <th>Mean Abs. Increment</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1261,15 +1093,15 @@ body {
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12">
                     <div class="chart-card">
-                        <div class="chart-controls mb-4">
+                        <div class="chart-controls">
                             <button class="comp-btn active" data-metric="rmse">
                                 <i class="fas fa-chart-bar"></i> RMSE
                             </button>
                             <button class="comp-btn" data-metric="improvement">
-                                <i class="fas fa-percentage"></i> 개선율
+                                <i class="fas fa-percentage"></i> Improvement Rate
                             </button>
                             <button class="comp-btn" data-metric="increment">
-                                <i class="fas fa-adjust"></i> 증분
+                                <i class="fas fa-adjust"></i> Increment
                             </button>
                         </div>
                         <canvas id="comparisonChart"></canvas>
@@ -1281,21 +1113,21 @@ body {
             <div class="row g-4" data-aos="fade-up">
                 <div class="col-lg-6">
                     <div class="finding-card">
-                        <h5><i class="fas fa-check-circle"></i> SE 지역 특성</h5>
+                        <h5><i class="fas fa-check-circle"></i> SE Region Characteristics</h5>
                         <ul class="custom-list">
-                            <li>약 24% RMSE 감소</li>
-                            <li>음수 증분: ERA5 과추정</li>
-                            <li>관측 밀도가 높은 지역</li>
+                            <li>~24% RMSE reduction</li>
+                            <li>Negative increments: ERA5 overestimation</li>
+                            <li>High observation density region</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="finding-card">
-                        <h5><i class="fas fa-check-circle"></i> GW 지역 특성</h5>
+                        <h5><i class="fas fa-check-circle"></i> GW Region Characteristics</h5>
                         <ul class="custom-list">
-                            <li>약 24% RMSE 감소</li>
-                            <li>양수 증분: ERA5 과소추정</li>
-                            <li>관측 희소, 복잡 지형</li>
+                            <li>~24% RMSE reduction</li>
+                            <li>Positive increments: ERA5 underestimation</li>
+                            <li>Sparse observations, complex terrain</li>
                         </ul>
                     </div>
                 </div>
@@ -1307,20 +1139,20 @@ body {
     <section id="team" class="py-5">
         <div class="container">
             <h2 class="section-title text-center mb-5" data-aos="fade-up">
-                <span class="highlight">연구 팀</span>
+                <span class="highlight">Research Team</span>
             </h2>
 
             <div class="row g-4">
                 <div class="col-lg-6" data-aos="fade-up">
                     <div class="team-card">
                         <div class="team-avatar">A</div>
-                        <h4>멤버 A — 데이터 파이프라인</h4>
-                        <p class="role">Data Pipeline & Preprocessing</p>
+                        <h4>Member A — Data Pipeline</h4>
+                        <p class="role">Data Collection & Preprocessing</p>
                         <ul class="team-list">
-                            <li>CDS API를 통한 ERA5 데이터 다운로드</li>
-                            <li>KMA 포털에서 ASOS 관측 수집</li>
-                            <li>한반도 영역 추출, 단위 변환, 결측치 처리</li>
-                            <li>Google Drive 공유 작업 공간 구성</li>
+                            <li>Downloaded ERA5 data using CDS API</li>
+                            <li>Collected ASOS observations from KMA portal</li>
+                            <li>Preprocessing: Korea domain cropping, unit conversion, missing value handling</li>
+                            <li>Configured shared Google Drive workspace</li>
                         </ul>
                     </div>
                 </div>
@@ -1328,13 +1160,13 @@ body {
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="team-card">
                         <div class="team-avatar">B</div>
-                        <h4>멤버 B — EnKF 핵심</h4>
+                        <h4>Member B — EnKF Core</h4>
                         <p class="role">EnKF Implementation</p>
                         <ul class="team-list">
-                            <li>칼만 이득 계산 구현</li>
-                            <li>앙상블 생성 및 업데이트 로직 개발</li>
-                            <li>재사용 가능한 EnKF 모듈 구축</li>
-                            <li>모든 실험을 위한 공통 프레임워크 제공</li>
+                            <li>Implemented Kalman gain calculation</li>
+                            <li>Developed ensemble generation and update logic</li>
+                            <li>Built reusable EnKF modules for team-wide experiments</li>
+                            <li>Designed common framework for all experiments</li>
                         </ul>
                     </div>
                 </div>
@@ -1342,13 +1174,13 @@ body {
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="team-card">
                         <div class="team-avatar">C</div>
-                        <h4>멤버 C — 시간 분석</h4>
+                        <h4>Member C — Time Analysis</h4>
                         <p class="role">Experiment 1 (Time Comparison)</p>
                         <ul class="team-list">
-                            <li>섭동 실험 모듈 추가</li>
-                            <li>정상 년도(2021) vs 열파 년도(2024) 비교</li>
-                            <li>SE/GW 앙상블 실험 수행</li>
-                            <li>e-folding time 계산 및 RMSE 시계열 시각화</li>
+                            <li>Added perturbation experiment modules</li>
+                            <li>Compared normal year (2021) vs heatwave year (2024)</li>
+                            <li>Conducted SE and GW ensemble experiments</li>
+                            <li>Visualized RMSE time series</li>
                         </ul>
                     </div>
                 </div>
@@ -1356,13 +1188,13 @@ body {
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="team-card">
                         <div class="team-avatar">D</div>
-                        <h4>멤버 D — 공간 분석</h4>
+                        <h4>Member D — Spatial Analysis</h4>
                         <p class="role">Experiment 2 (Spatial Comparison)</p>
                         <ul class="team-list">
-                            <li>OSE(관측 시스템 실험) 모듈 구현</li>
-                            <li>밀집 vs 희소 관측 네트워크 비교</li>
-                            <li>SE/GW 실험 수행 및 RMSE 감소 분석</li>
-                            <li>한반도 상의 분석 증분 지도 시각화</li>
+                            <li>Implemented OSE (Observing System Experiment) module</li>
+                            <li>Compared dense vs sparse observation networks</li>
+                            <li>Conducted SE vs GW experiments</li>
+                            <li>Visualized analysis increment maps</li>
                         </ul>
                     </div>
                 </div>
@@ -1374,7 +1206,7 @@ body {
     <section id="conclusion" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title text-center mb-5" data-aos="fade-up">
-                <span class="highlight">결론</span>
+                <span class="highlight">Conclusion</span>
             </h2>
 
             <div class="row" data-aos="fade-up">
@@ -1382,19 +1214,19 @@ body {
                     <div class="conclusion-box">
                         <ul class="conclusion-list">
                             <li>
-                                <strong>지역별 성능:</strong> 데이터 동화는 두 지역 모두에서 온도 추정을 개선했으나, GW는 배경 모델 오차가 더 커서 더 강한 보정이 필요했습니다.
+                                <strong>Regional Performance:</strong> Data assimilation improved temperature estimates in both regions, but GW required stronger corrections due to larger background errors.
                             </li>
                             <li>
-                                <strong>시간 및 공간 비교:</strong> 두 실험 모두에서 RMSE를 감소시켰습니다.
+                                <strong>Time & Spatial Comparison:</strong> DA reduced RMSE in both time and spatial comparison experiments.
                             </li>
                             <li>
-                                <strong>관측 밀도의 영향:</strong> 관측 밀도와 지역 특성이 보정 크기에 영향을 미칩니다.
+                                <strong>Observation Density Impact:</strong> Observation density and regional characteristics affected correction magnitude.
                             </li>
                             <li>
-                                <strong>강원의 특성:</strong> 더 큰 보정이 필요했으며, 이는 희소한 관측과 복잡한 지형 때문일 가능성이 높습니다.
+                                <strong>Gangwon Characteristics:</strong> Showed larger correction, likely due to sparse observations and complex terrain.
                             </li>
                             <li>
-                                <strong>실무적 의미:</strong> 이 실험은 열파 예측에서 데이터 동화의 실질적 역할을 입증합니다.
+                                <strong>Practical Significance:</strong> The experiment demonstrates the practical role of DA in heatwave prediction.
                             </li>
                         </ul>
                     </div>
@@ -1404,11 +1236,10 @@ body {
             <div class="row mt-5" data-aos="fade-up">
                 <div class="col-12">
                     <div class="highlight-section">
-                        <h5 class="mb-3">🔍 핵심 통찰</h5>
+                        <h5 class="mb-3">🔍 Key Insight</h5>
                         <p class="fs-5">
-                            이 연구는 <strong>관측 밀도</strong>와 <strong>지역 특성</strong>이 데이터 동화 성능에 얼마나 중요한지를 보여줍니다. 
-                            열파와 같은 극단 기상 예측에서는 초기 조건의 정확성이 매우 중요하며, 
-                            데이터 동화를 통해 모델 예측을 크게 개선할 수 있습니다.
+                            This research demonstrates how <strong>observation density</strong> and <strong>regional characteristics</strong> critically influence data assimilation performance. 
+                            For extreme weather prediction like heatwaves, the accuracy of initial conditions is paramount, and data assimilation significantly improves model forecasts.
                         </p>
                     </div>
                 </div>
@@ -1419,7 +1250,7 @@ body {
     <!-- References -->
     <section class="py-5 bg-dark text-light">
         <div class="container">
-            <h4 class="mb-4"><i class="fas fa-book"></i> 참고문헌</h4>
+            <h4 class="mb-4"><i class="fas fa-book"></i> References</h4>
             <ul class="references-list">
                 <li>Domeisen et al. (2023). Prediction and projection of heatwaves. <em>Nature Reviews Earth & Environment</em>.</li>
                 <li>Lei et al. (2025). Overview and prospect of data assimilation in numerical weather prediction.</li>
@@ -1433,19 +1264,19 @@ body {
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5><i class="fas fa-thermometer-half"></i> 열파 예측 연구</h5>
-                    <p class="text-muted">데이터 동화를 통한 열파 예측 개선 프로젝트</p>
+                    <h5><i class="fas fa-thermometer-half"></i> Heatwave Prediction Research</h5>
+                    <p class="text-muted">Data Assimilation for Improved Heatwave Forecasting</p>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <h5>빠른 링크</h5>
+                    <h5>Quick Links</h5>
                     <ul class="footer-links">
-                        <li><a href="#intro">소개</a></li>
-                        <li><a href="#results">결과</a></li>
-                        <li><a href="#team">팀</a></li>
+                        <li><a href="#intro">Introduction</a></li>
+                        <li><a href="#results">Results</a></li>
+                        <li><a href="#team">Team</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <h5>방법론</h5>
+                    <h5>Methodology</h5>
                     <p class="text-muted small">
                         EnKF · ERA5 · ASOS · Data Assimilation
                     </p>
@@ -1453,7 +1284,7 @@ body {
             </div>
             <hr>
             <div class="text-center text-muted">
-                <p>&copy; 2026 열파 예측과 데이터 동화 연구팀. 모든 권리 보유.</p>
+                <p>&copy; 2026 Heatwave Prediction & Data Assimilation Research Team. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1464,39 +1295,19 @@ body {
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-// Initialize AOS (Animate on Scroll)
-AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100
-});
+// Initialize AOS
+AOS.init({ duration: 1000, once: true, offset: 100 });
 
-// Chart.js configuration
+// Chart configuration
 const chartConfig = {
     plugins: {
         legend: {
-            labels: {
-                font: {
-                    size: 12,
-                    weight: 600
-                },
-                padding: 20,
-                usePointStyle: true
-            }
+            labels: { font: { size: 12, weight: 600 }, padding: 20, usePointStyle: true }
         }
     },
     scales: {
-        y: {
-            beginAtZero: true,
-            grid: {
-                color: 'rgba(0, 0, 0, 0.05)'
-            }
-        },
-        x: {
-            grid: {
-                display: false
-            }
-        }
+        y: { beginAtZero: true, grid: { color: 'rgba(0, 0, 0, 0.05)' } },
+        x: { grid: { display: false } }
     }
 };
 
@@ -1509,7 +1320,7 @@ if (timeChartCtx) {
             labels: ['SE 2021', 'GW 2021', 'SE 2024', 'GW 2024'],
             datasets: [
                 {
-                    label: '자유 실행 RMSE',
+                    label: 'Free Run RMSE',
                     data: [1.1393, 1.7813, 0.9916, 1.9563],
                     backgroundColor: 'rgba(238, 90, 111, 0.8)',
                     borderColor: 'rgba(238, 90, 111, 1)',
@@ -1517,7 +1328,7 @@ if (timeChartCtx) {
                     borderRadius: 5
                 },
                 {
-                    label: '분석 RMSE',
+                    label: 'Analysis RMSE',
                     data: [0.9660, 1.5281, 0.8351, 1.6665],
                     backgroundColor: 'rgba(102, 126, 234, 0.8)',
                     borderColor: 'rgba(102, 126, 234, 1)',
@@ -1529,15 +1340,7 @@ if (timeChartCtx) {
         options: {
             ...chartConfig,
             responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                ...chartConfig.plugins,
-                title: {
-                    display: true,
-                    text: 'RMSE 비교: 자유 실행 vs 분석',
-                    font: { size: 14, weight: 'bold' }
-                }
-            }
+            plugins: { ...chartConfig.plugins, title: { display: true, text: 'RMSE Comparison: Free Run vs Analysis', font: { size: 14, weight: 'bold' } } }
         }
     });
 }
@@ -1548,7 +1351,7 @@ if (spatialChartCtx) {
     new Chart(spatialChartCtx, {
         type: 'radar',
         data: {
-            labels: ['배경 RMSE', '분석 RMSE', 'RMSE 감소', '개선율', '평균 증분'],
+            labels: ['Background RMSE', 'Analysis RMSE', 'RMSE Reduction', 'Improvement Rate', 'Mean Increment'],
             datasets: [
                 {
                     label: 'SE 2024',
@@ -1575,28 +1378,13 @@ if (spatialChartCtx) {
         options: {
             ...chartConfig,
             responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                ...chartConfig.plugins,
-                title: {
-                    display: true,
-                    text: '공간 분석 비교: SE vs GW',
-                    font: { size: 14, weight: 'bold' }
-                }
-            },
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)'
-                    }
-                }
-            }
+            plugins: { ...chartConfig.plugins, title: { display: true, text: 'Spatial Analysis Comparison: SE vs GW', font: { size: 14, weight: 'bold' } } },
+            scales: { r: { beginAtZero: true, grid: { color: 'rgba(0, 0, 0, 0.1)' } } }
         }
     });
 }
 
-// Comparison Chart (Interactive)
+// Comparison Chart
 let currentMetric = 'rmse';
 const comparisonChartCtx = document.getElementById('comparisonChart');
 let comparisonChart = null;
@@ -1605,100 +1393,51 @@ const metricsData = {
     rmse: {
         labels: ['SE 2024', 'GW 2024'],
         datasets: [
-            {
-                label: '배경 RMSE',
-                data: [0.9939, 1.9557],
-                backgroundColor: 'rgba(238, 90, 111, 0.8)',
-                borderColor: 'rgba(238, 90, 111, 1)',
-                borderWidth: 2
-            },
-            {
-                label: '분석 RMSE',
-                data: [0.7560, 1.4927],
-                backgroundColor: 'rgba(102, 126, 234, 0.8)',
-                borderColor: 'rgba(102, 126, 234, 1)',
-                borderWidth: 2
-            }
+            { label: 'Background RMSE', data: [0.9939, 1.9557], backgroundColor: 'rgba(238, 90, 111, 0.8)', borderColor: 'rgba(238, 90, 111, 1)', borderWidth: 2 },
+            { label: 'Analysis RMSE', data: [0.7560, 1.4927], backgroundColor: 'rgba(102, 126, 234, 0.8)', borderColor: 'rgba(102, 126, 234, 1)', borderWidth: 2 }
         ],
-        title: 'RMSE 비교'
+        title: 'RMSE Comparison'
     },
     improvement: {
         labels: ['SE 2024', 'GW 2024'],
         datasets: [
-            {
-                label: '개선율 (%)',
-                data: [23.93, 23.67],
-                backgroundColor: 'rgba(29, 209, 161, 0.8)',
-                borderColor: 'rgba(29, 209, 161, 1)',
-                borderWidth: 2
-            }
+            { label: 'Improvement Rate (%)', data: [23.93, 23.67], backgroundColor: 'rgba(29, 209, 161, 0.8)', borderColor: 'rgba(29, 209, 161, 1)', borderWidth: 2 }
         ],
-        title: '개선율 비교'
+        title: 'Improvement Rate Comparison'
     },
     increment: {
         labels: ['SE 2024', 'GW 2024'],
         datasets: [
-            {
-                label: '평균 증분',
-                data: [-0.219, 0.692],
-                backgroundColor: ['rgba(9, 132, 227, 0.8)', 'rgba(240, 147, 251, 0.8)'],
-                borderColor: ['rgba(9, 132, 227, 1)', 'rgba(240, 147, 251, 1)'],
-                borderWidth: 2
-            },
-            {
-                label: '평균 절대 증분',
-                data: [0.376, 0.843],
-                backgroundColor: ['rgba(102, 126, 234, 0.5)', 'rgba(240, 147, 251, 0.5)'],
-                borderColor: ['rgba(102, 126, 234, 1)', 'rgba(240, 147, 251, 1)'],
-                borderWidth: 2,
-                borderDash: [5, 5]
-            }
+            { label: 'Mean Increment', data: [-0.219, 0.692], backgroundColor: ['rgba(9, 132, 227, 0.8)', 'rgba(240, 147, 251, 0.8)'], borderColor: ['rgba(9, 132, 227, 1)', 'rgba(240, 147, 251, 1)'], borderWidth: 2 },
+            { label: 'Mean Abs. Increment', data: [0.376, 0.843], backgroundColor: ['rgba(102, 126, 234, 0.5)', 'rgba(240, 147, 251, 0.5)'], borderColor: ['rgba(102, 126, 234, 1)', 'rgba(240, 147, 251, 1)'], borderWidth: 2, borderDash: [5, 5] }
         ],
-        title: '증분 비교'
+        title: 'Increment Comparison'
     }
 };
 
 function updateComparisonChart() {
     const data = metricsData[currentMetric];
-    
     if (comparisonChart) {
-        comparisonChart.data = {
-            labels: data.labels,
-            datasets: data.datasets
-        };
+        comparisonChart.data = { labels: data.labels, datasets: data.datasets };
         comparisonChart.options.plugins.title.text = data.title;
         comparisonChart.update();
     } else if (comparisonChartCtx) {
         comparisonChart = new Chart(comparisonChartCtx, {
             type: currentMetric === 'improvement' ? 'doughnut' : 'bar',
-            data: {
-                labels: data.labels,
-                datasets: data.datasets
-            },
+            data: { labels: data.labels, datasets: data.datasets },
             options: {
                 ...chartConfig,
                 responsive: true,
-                maintainAspectRatio: true,
                 indexAxis: currentMetric === 'improvement' ? undefined : 'y',
-                plugins: {
-                    ...chartConfig.plugins,
-                    title: {
-                        display: true,
-                        text: data.title,
-                        font: { size: 14, weight: 'bold' }
-                    }
-                }
+                plugins: { ...chartConfig.plugins, title: { display: true, text: data.title, font: { size: 14, weight: 'bold' } } }
             }
         });
     }
 }
 
-// Initialize comparison chart
-if (comparisonChartCtx) {
-    updateComparisonChart();
-}
+if (comparisonChartCtx) updateComparisonChart();
 
-// Handle metric button clicks
+// Event listeners
 document.querySelectorAll('.comp-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         document.querySelectorAll('.comp-btn').forEach(b => b.classList.remove('active'));
@@ -1708,30 +1447,21 @@ document.querySelectorAll('.comp-btn').forEach(btn => {
     });
 });
 
-// Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href !== '#' && document.querySelector(href)) {
             e.preventDefault();
-            document.querySelector(href).scrollIntoView({
-                behavior: 'smooth'
-            });
+            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
         }
     });
 });
 
-// Add scroll effect to navbar
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 5px 20px rgba(102, 126, 234, 0.3)';
-    } else {
-        navbar.style.boxShadow = '0 2px 10px rgba(102, 126, 234, 0.2)';
-    }
+    navbar.style.boxShadow = window.scrollY > 50 ? '0 5px 20px rgba(102, 126, 234, 0.3)' : '0 2px 10px rgba(102, 126, 234, 0.2)';
 });
 
-// Responsive navbar collapse on link click
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function() {
         const navbarCollapse = document.querySelector('.navbar-collapse');
@@ -1741,20 +1471,8 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Add parallax effect to hero section
-window.addEventListener('scroll', function() {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const scrolled = window.pageYOffset;
-        hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
-    }
-});
-
-// Console message
-console.log('%c🌡️ Heatwave Prediction through Data Assimilation', 
-    'font-size: 16px; font-weight: bold; color: #667eea;');
-console.log('%cAll-in-One Version - Research Project', 
-    'font-size: 12px; color: #764ba2;');
+console.log('%c🌡️ Heatwave Prediction through Data Assimilation', 'font-size: 16px; font-weight: bold; color: #667eea;');
+console.log('%cAll-in-One English Version', 'font-size: 12px; color: #764ba2;');
     </script>
 </body>
 </html>
